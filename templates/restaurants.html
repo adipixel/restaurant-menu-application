@@ -21,32 +21,60 @@
 		<script src="//code.jquery.com/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
+		<link rel="stylesheet" href="{{url_for('static', filename= 'style.css')}}">
 
 		<!-- ________________________________________________________________________ -->
-
-		<h1>All restaurants</h1>
-		{% with messages = get_flashed_messages() %}
-		{% if messages %}
-		<div style="position: fixed; right: 0; bottom: 0; min-height: 50px; min-width: 300px; background-color: #eff;">
-			<ul> 
+		<nav class="navbar navbar-default navbar-static-top" role="navigation">
+			<div class="container">
+				<a class="navbar-brand" href="#">Restaurants Management System</a>
+				<ul class="nav navbar-nav">
+					<li class="active">
+						<a href="#">Home</a>
+					</li>
+					<li>
+						<a href="#">Link</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="page-header">
+			  <h1>Restaurants<small> List of all restaurants</small></h1>
+			</div>
+			{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			<div class="flash">
 			{% for msg in messages %}
-				<li>{{msg}}</li>
+				<label>{{msg}}</label>
 			{% endfor %}
-			</ul>
-		</div>
-		{% endif %}
-		{% endwith %}
+			</div>
+			{% endif %}
+			{% endwith %}
+			<a href="{{ url_for('newRestaurant') }}" class="btn btn-primary">Create new restaurant</a>
+			<div class="row">
+				<div class="col-xs-12">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Name</th>
+							</tr>
+						</thead>
+						<tbody>
+						{% for r in restaurants %}
+							<tr>
+								<td>{{r.name}}</td>
+								<td><a class="btn" href="{{url_for('editRestaurant', restaurant_id = r.id)}}">Edit</a></td>
+								<td><a class="btn" href="{{url_for('deleteRestaurant', restaurant_id = r.id)}}">Delete</a></td>
+							</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<br />
+			
 
-		{% for r in restaurants %}
-		<div>
-		<p>{{r.name}}</p>
-		<a href="#">Edit</a>
-		<a href="#">Delete</a>
 		</div>
-		<br />
-		{% endfor %}
-
 
 		
 	</body>

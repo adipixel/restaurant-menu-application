@@ -8,13 +8,6 @@
 
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
-			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
 	</head>
 	<body>
 		<!-- jQuery -->
@@ -38,11 +31,11 @@
 		{% endwith %}
 
 		<div class="container">
-			<form action="#" method="POST" role="form">
+			<form action="{{url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id = item.id)}}" method="POST" role="form">
 				<legend>Delete menu item</legend>
 				<label for="delete">Do your really want to delete the menu item {{ item.name }}?</label>
 				<button type="submit" class="btn btn-primary" name="delete">Delete</button>
-				<button href="#" class="btn">Cancel</button>
+				<a href="{{url_for('showMenu', restaurant_id = restaurant.id)}}" class="btn btn-default">Cancel</a>
 			</form>
 		</div>
 	</body>

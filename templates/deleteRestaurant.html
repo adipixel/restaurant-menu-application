@@ -38,10 +38,10 @@
 		{% endif %}
 		{% endwith %}
 
-		<form action="#" method="POST">
+		<form action="{{url_for('deleteRestaurant', restaurant_id = restaurant.id)}}" method="POST">
 			<h5>Do you want to delete {{ restaurant.name }} ?</h5>
-			<input type="submit" value="Delete">
-			<button href="#">Cancel</button>
+			<input type="submit" value="Delete" class="btn btn-primary">
+			<a class="btn btn-default" href="{{url_for('showRestaurants')}}">Cancel</a>
 		</form>
 
 		

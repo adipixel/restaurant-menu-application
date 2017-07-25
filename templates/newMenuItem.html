@@ -38,7 +38,7 @@
 		{% endwith %}
 
 		<div class="container">
-			<form action="#" method="POST" role="form">
+			<form action="{{url_for('newMenuItem', restaurant_id = restaurant.id)}}" method="POST" role="form">
 				<legend>Create new menu item</legend>
 				<div class="form-group">
 					<label class="" for="name">Item name</label>
@@ -57,7 +57,7 @@
 					<input class="form-control" type="text" value="" name="course">
 				</div>
 				<button type="submit" class="btn btn-primary">Create</button>
-				<button href="#" class="btn">Cancel</button>
+				<a href="{{url_for('showMenu', restaurant_id = restaurant.id)}}" class="btn btn-default">Cancel</a>
 			</form>
 		</div>
 	</body>
