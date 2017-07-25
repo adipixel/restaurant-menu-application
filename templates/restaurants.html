@@ -23,10 +23,10 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="{{url_for('static', filename= 'style.css')}}">
 
-		<!-- ________________________________________________________________________ -->
+		<!-- main content starts here -->
 		<nav class="navbar navbar-default navbar-static-top" role="navigation">
 			<div class="container">
-				<a class="navbar-brand" href="#">Restaurants Management System</a>
+				<a class="navbar-brand" href="#">RMS</a>
 				<ul class="nav navbar-nav">
 					<li class="active">
 						<a href="#">Home</a>
@@ -45,7 +45,7 @@
 			{% if messages %}
 			<div class="flash">
 			{% for msg in messages %}
-				<label>{{msg}}</label>
+				<div class="alert alert-success flash" role="alert">{{msg}}</div>
 			{% endfor %}
 			</div>
 			{% endif %}
@@ -53,18 +53,20 @@
 			<a href="{{ url_for('newRestaurant') }}" class="btn btn-primary">Create new restaurant</a>
 			<div class="row">
 				<div class="col-xs-12">
-					<table class="table table-hover">
+					<table class="table table-condensed table-hover">
 						<thead>
 							<tr>
 								<th>Name</th>
+								<th>Edit</th>
+								<th>Delete</th>
 							</tr>
 						</thead>
 						<tbody>
 						{% for r in restaurants %}
 							<tr>
-								<td>{{r.name}}</td>
-								<td><a class="btn" href="{{url_for('editRestaurant', restaurant_id = r.id)}}">Edit</a></td>
-								<td><a class="btn" href="{{url_for('deleteRestaurant', restaurant_id = r.id)}}">Delete</a></td>
+								<td><a href="{{url_for('showMenu', restaurant_id = r.id)}}">{{r.name}}</a></td>
+								<td><a class="btn-sm btn-info" href="{{url_for('editRestaurant', restaurant_id = r.id)}}">Edit</a></td>
+								<td><a class="btn-sm btn-danger" href="{{url_for('deleteRestaurant', restaurant_id = r.id)}}">Delete</a></td>
 							</tr>
 						{% endfor %}
 						</tbody>
