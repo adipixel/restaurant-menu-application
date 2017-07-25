@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Restaurant Menu Application</title>
+		<title>Restautant Menu Application</title>
 
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -25,7 +25,6 @@
 
 		<!-- ________________________________________________________________________ -->
 
-		<h1>All restaurants</h1>
 		{% with messages = get_flashed_messages() %}
 		{% if messages %}
 		<div style="position: fixed; right: 0; bottom: 0; min-height: 50px; min-width: 300px; background-color: #eff;">
@@ -38,16 +37,13 @@
 		{% endif %}
 		{% endwith %}
 
-		{% for r in restaurants %}
-		<div>
-		<p>{{r.name}}</p>
-		<a href="#">Edit</a>
-		<a href="#">Delete</a>
+		<div class="container">
+			<form action="#" method="POST" role="form">
+				<legend>Delete menu item</legend>
+				<label for="delete">Do your really want to delete the menu item {{ item.name }}?</label>
+				<button type="submit" class="btn btn-primary" name="delete">Delete</button>
+				<button href="#" class="btn">Cancel</button>
+			</form>
 		</div>
-		<br />
-		{% endfor %}
-
-
-		
 	</body>
 </html>

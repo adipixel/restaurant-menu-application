@@ -30,17 +30,18 @@ def showRestaurants():
 
 @app.route('/restaurant/new/')
 def newRestaurant():
-    return "Create new Restaurant"
+    return render_template('newRestaurant.html')
 
 
 @app.route('/restaurant/<int:restaurant_id>/edit')
 def editRestaurant(restaurant_id):
-    return "Edit restaurant %s" %restaurant_id
+    return render_template('editRestaurant.html', restaurant = restaurant)
 
 
 @app.route('/restaurant/<int:restaurant_id>/delete')
 def deleteRestaurant(restaurant_id):
-    return "Delete restaurant %s" %restaurant_id
+    return render_template('deleteRestaurant.html', restaurant = restaurant)
+
 
 @app.route('/restaurant/<int:restaurant_id>/menu')
 @app.route('/restaurant/<int:restaurant_id>/')
@@ -63,7 +64,7 @@ def newMenuItem(restaurant_id):
         return "POST for creating menu item of restaurant %s" %restaurant_id 
     else:
         # return render_template('newmenuitem.html', restaurant_id=restaurant_id)
-        return "GET - form for creating new menu item"
+        return render_template('newMenuItem.html', restaurant = restaurant)
 
 
 @app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit',
@@ -80,7 +81,7 @@ def editMenuItem(restaurant_id, menu_id):
         return "POST for editing menu item of restaurant %s" %restaurant_id
     else:
         #return render_template('editmenuitem.html', restaurant_id=restaurant_id, MenuID=MenuID, item=editedItem)
-        return "GET - form for editing menu item"
+        return render_template('editMenuItem.html', restaurant = restaurant, item = item)
 
 
 @app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/delete/', methods = ['GET', 'POST'])
@@ -94,7 +95,7 @@ def deleteMenuItem(restaurant_id, menu_id):
             return "POST for deleting menu item from restaurant %s" %restaurant_id
 	else:
 		# return render_template('deletemenuitem.html', item = item, restaurant_id = restaurant_id)
-            return "GET - alert for deleting menu item"
+            return render_template('deleteMenuItem.html', item = item)
 
 # @app.route('/restaurants/<int:restaurant_id>/menu/json')
 # def retaurantMenuJson(restaurant_id):
