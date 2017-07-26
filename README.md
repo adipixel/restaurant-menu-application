@@ -11,8 +11,8 @@ Iteratively developed data driven web-based application for managing menu for va
 
 
 ### Development Life Cycle
-1. __Wire Frames__: Developed wire frames for the application.
-2. __Mockups__: Sketched mockups for all the pages in the application.
+1. __Wire Frames__: Developed wire frames for the application. (https://github.com/adipixel/restaurant-menu-application/blob/master/static/data1.jpg)
+2. __Mockups__: Sketched mockups for all the pages in the application. (https://github.com/adipixel/restaurant-menu-application/blob/master/static/data2.jpg)
 3. __Routing__: Decided URLs for all pages and created routes.
 4. __Templates and Forms__: Developed HTML templates for all mockup pages.
 5. __CRUD__: Performed Create, Read, Update, and Delete operations using forms/templates over the database.
