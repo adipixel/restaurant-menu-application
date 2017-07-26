@@ -23,27 +23,40 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 
-		<!-- ________________________________________________________________________ -->
+		<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
 
+		<!-- main content starts here -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation">
+			<div class="container">
+				<a class="navbar-brand" href="{{url_for('showRestaurants')}}">RMS</a>
+			</div>
+		</nav>
 		<div class="container">
-			<h1>Edit restaurant</h1>
+			<div class="page-header">
+			  <h1>Edit Restaurant</h1>
+			</div>
 			{% with messages = get_flashed_messages() %}
 			{% if messages %}
-			<div style="position: fixed; right: 0; bottom: 0; min-height: 50px; min-width: 300px; background-color: #eff;">
-				<ul> 
-				{% for msg in messages %}
-					<li>{{msg}}</li>
-				{% endfor %}
-				</ul>
+			<div class="flash">
+			{% for msg in messages %}
+				<div class="alert alert-success flash" role="alert">{{msg}}</div>
+			{% endfor %}
 			</div>
 			{% endif %}
 			{% endwith %}
 
-			<form action="#" method="POST" role="form">
-				<input type="text" name="name" value="{{ restaurant.name }}" class="form-control">
-				<input type="submit" value="Save" class="btn btn-primary">
-				<a class="btn btn-default" href="{{url_for('showRestaurants')}}">Cancel</a>
-			</form>
+			<div class="row">
+				<div class="col-xs-12 col-md-6">
+					<form action="#" method="POST" role="form">
+						<div class="form-group">
+							<label for="name">Restaurant name</label>
+							<input type="text" name="name" value="{{ restaurant.name }}" class="form-control">
+						</div>
+						<input type="submit" value="Save" class="btn btn-primary">
+						<a class="btn btn-default" href="{{url_for('showRestaurants')}}">Cancel</a>
+					</form>
+				</div>
+			</div>
 
 			
 		</div>

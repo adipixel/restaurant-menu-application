@@ -16,27 +16,39 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 
-		<!-- ________________________________________________________________________ -->
+		<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
 
-		{% with messages = get_flashed_messages() %}
-		{% if messages %}
-		<div style="position: fixed; right: 0; bottom: 0; min-height: 50px; min-width: 300px; background-color: #eff;">
-			<ul> 
-			{% for msg in messages %}
-				<li>{{msg}}</li>
-			{% endfor %}
-			</ul>
-		</div>
-		{% endif %}
-		{% endwith %}
-
+		<!-- main content starts here -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation">
+			<div class="container">
+				<a class="navbar-brand" href="{{url_for('showRestaurants')}}">RMS</a>
+			</div>
+		</nav>
 		<div class="container">
-			<form action="{{url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id = item.id)}}" method="POST" role="form">
-				<legend>Delete menu item</legend>
-				<label for="delete">Do your really want to delete the menu item {{ item.name }}?</label>
-				<button type="submit" class="btn btn-primary" name="delete">Delete</button>
-				<a href="{{url_for('showMenu', restaurant_id = restaurant.id)}}" class="btn btn-default">Cancel</a>
-			</form>
+			<div class="page-header">
+			  <h1>Edit menu item</h1>
+			</div>
+			{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			<div class="flash">
+			{% for msg in messages %}
+				<div class="alert alert-success flash" role="alert">{{msg}}</div>
+			{% endfor %}
+			</div>
+			{% endif %}
+			{% endwith %}
+
+			<div class="row">
+				<div class="col-xs-12 col-md-6">
+					<form action="{{url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id = item.id)}}" method="POST" role="form">
+						<div class="form-group">
+							<label for="delete">Do your really want to delete the menu item {{ item.name }}?</label>
+						</div>
+						<button type="submit" class="btn btn-primary" name="delete">Delete</button>
+						<a href="{{url_for('showMenu', restaurant_id = restaurant.id)}}" class="btn btn-default">Cancel</a>
+					</form>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

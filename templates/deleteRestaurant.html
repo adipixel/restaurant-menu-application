@@ -23,26 +23,42 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 
-		<!-- ________________________________________________________________________ -->
+		
+				<link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
 
-		<h1>Delete restaurant</h1>
-		{% with messages = get_flashed_messages() %}
-		{% if messages %}
-		<div style="position: fixed; right: 0; bottom: 0; min-height: 50px; min-width: 300px; background-color: #eff;">
-			<ul> 
+		<!-- main content starts here -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation">
+			<div class="container">
+				<a class="navbar-brand" href="{{url_for('showRestaurants')}}">RMS</a>
+			</div>
+		</nav>
+		<div class="container">
+			<div class="page-header">
+			  <h1>Delete Restaurant</h1>
+			</div>
+			{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			<div class="flash">
 			{% for msg in messages %}
-				<li>{{msg}}</li>
+				<div class="alert alert-success flash" role="alert">{{msg}}</div>
 			{% endfor %}
-			</ul>
-		</div>
-		{% endif %}
-		{% endwith %}
+			</div>
+			{% endif %}
+			{% endwith %}
 
-		<form action="{{url_for('deleteRestaurant', restaurant_id = restaurant.id)}}" method="POST">
-			<h5>Do you want to delete {{ restaurant.name }} ?</h5>
-			<input type="submit" value="Delete" class="btn btn-primary">
-			<a class="btn btn-default" href="{{url_for('showRestaurants')}}">Cancel</a>
-		</form>
+			<div class="row">
+				<div class="col-xs-12 col-md-6">
+					<form action="{{url_for('deleteRestaurant', restaurant_id = restaurant.id)}}" method="POST">
+						<div class="form-group">
+							<label>Do you really want to delete {{ restaurant.name }} ?</label>
+						</div>
+						<input type="submit" value="Delete" class="btn btn-primary">
+						<a class="btn btn-default" href="{{url_for('showRestaurants')}}">Cancel</a>
+					</form>
+
+				</div>
+			</div>
+		</div>
 
 		
 	</body>

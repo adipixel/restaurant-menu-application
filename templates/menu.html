@@ -21,36 +21,76 @@
 		<script src="//code.jquery.com/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="{{url_for('static', filename= 'style.css')}}">
 
+		<!-- main content starts here -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation">
+			<div class="container">
+				<a class="navbar-brand" href="{{url_for('showRestaurants')}}">RMS</a>
+			</div>
+		</nav>
 
-		<!-- ________________________________________________________________________ -->
+		<div class="container">
+			<div class="page-header text-center">
+			  <h1>{{restaurant.name}}</h1>
+			</div>
+			
 
-		<h1>{{restaurant.name}}</h1>
-		{% with messages = get_flashed_messages() %}
-		{% if messages %}
-		<div style="position: fixed; right: 0; bottom: 0; min-height: 50px; min-width: 300px; background-color: #eff;">
-			<ul> 
-			{% for msg in messages %}
-				<li>{{msg}}</li>
+			<section class="row alerts">
+				<!-- flash -->
+				<div class="row">
+					<div class="col-xs-12">
+						{% with messages = get_flashed_messages() %}
+						{% if messages %}
+						<div class="flash">
+						{% for msg in messages %}
+							<div class="alert alert-success flash" role="alert">{{msg}}</div>
+						{% endfor %}
+						</div>
+						{% endif %}
+						{% endwith %}
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-10">
+						<a href="{{url_for('newMenuItem', restaurant_id=restaurant.id)}}" class="btn btn-primary">Create new menu item</a>
+					</div>
+					<div class="col-xs-2 text-right">
+						<a class="btn btn-default" href="{{url_for('showRestaurants')}}">Restaurants</a>
+					</div>
+				</div>
+			</section>
+
+			<section class="row">
+			{% for i in items %}
+				<div class="row card-holder">
+					<div class="card col-xs-10 col-xs-offset-1">
+						<div class="row">
+							<div class="col-xs-10">
+								<h4><strong>{{i.name}}</strong></h4>
+							</div>
+							<div class="col-xs-2 text-right">
+								<h4>{{i.price}}</h4>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<p class="card-desc">{{i.description}}</p>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-offset-6 col-xs-6 col-sm-offset-8 col-sm-4 text-right">
+								<a class="btn-sm btn-info" href="{{url_for('editMenuItem', restaurant_id = restaurant.id, menu_id = i.id)}}">Edit</a>
+								<a class="btn-sm btn-danger" href="{{url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id = i.id)}}">Delete</a>
+							</div>
+						</div>
+
+					</div>
+				</div>
 			{% endfor %}
-			</ul>
+			</section>
+
 		</div>
-		{% endif %}
-		{% endwith %}
-
-		<a href="{{url_for('newMenuItem', restaurant_id=restaurant.id)}}" class="btn btn-primary">Create new menu item</a>
-		{% for i in items %}
-		<div>
-		<p>{{i.name}}</p>
-		<p>{{i.description}}</p>
-		<p> {{i.price}} </p>
-		<a href="{{url_for('editMenuItem', restaurant_id = restaurant.id, menu_id = i.id)}}">Edit</a>
-		<a href="{{url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id = i.id)}}">Delete</a>
-		</div>
-		<br />
-		{% endfor %}
-
-
 		
 	</body>
 </html>

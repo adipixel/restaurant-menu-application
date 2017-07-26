@@ -13,6 +13,9 @@ session = DBSession()
 
 
 @app.route('/')
+def showLanding():
+	return render_template('landing.html')
+
 @app.route('/restaurants/')
 def showRestaurants():
 	restaurants = session.query(Restaurant).order_by(Restaurant.name).all()
@@ -86,6 +89,9 @@ def editMenuItem(restaurant_id, menu_id):
 	if request.method == 'POST':
 		if request.form['name']:
 			item.name = request.form['name']
+			item.description = request.form['description']
+			price=request.form['price']
+			course=request.form['course']
 		session.add(item)
 		session.commit()
 		flash("Item updated!")
