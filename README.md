@@ -2,12 +2,13 @@
 
 Iteratively developed data driven web-based application for managing menu for various restaurants. 
 
-**Technologies used:**
+**Technologies used**
 - Python with Flask Framework
 - SQL - SQLAlchemy
 - HTML
 - CSS
 - JAvaScript
+
 
 **Development Life Cycle**
 1. __Wire Frames__: Developed wire frames for the application.
