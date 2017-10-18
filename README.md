@@ -1,6 +1,8 @@
 # Restaurant Management System Application
 
-Iteratively developed data driven web-based application for managing menu for various restaurants. 
+Iteratively developed data driven web-based application for managing menu for various restaurants using Python with Flask framework, SQL using SQLAlchemy, HTML, CSS and JavaScript using Bootstrap.
+Delivered a responsive user interface with a structured storage for the various menu items across restaurants.
+
 
 ### Technologies used
 - Python with Flask Framework
